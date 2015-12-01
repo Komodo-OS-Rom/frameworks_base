@@ -4984,6 +4984,15 @@ public final class Settings {
         * Komodo Panels end
         *********************/
 
+       /**
+         * Volume rocker wake
+         * @hide
+         */
+        public static final String VOLUME_ROCKER_WAKE = "volume_rocker_wake";
+        /** @hide */
+        private static final Validator VOLUME_ROCKER_WAKE_VALIDATOR =
+                BOOLEAN_VALIDATOR;
+
         /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
@@ -5077,6 +5086,7 @@ public final class Settings {
             QS_LAYOUT_ROWS,
             QS_QUICKBAR_COLUMNS,
             SCREEN_OFF_ANIMATION,
+            VOLUME_ROCKER_WAKE,
             // Komodo panels end
         };
 
@@ -5230,6 +5240,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(QS_LAYOUT_ROWS);
             PRIVATE_SETTINGS.add(QS_QUICKBAR_COLUMNS);
             PRIVATE_SETTINGS.add(SCREEN_OFF_ANIMATION);
+            PRIVATE_SETTINGS.add(VOLUME_ROCKER_WAKE);
             // Komodo panels end
         }
 
@@ -5362,6 +5373,7 @@ public final class Settings {
             VALIDATORS.put(QS_LAYOUT_ROWS, QS_LAYOUT_ROWS_VALIDATOR);
             VALIDATORS.put(QS_QUICKBAR_COLUMNS, QS_QUICKBAR_COLUMNS_VALIDATOR);
             VALIDATORS.put(SCREEN_OFF_ANIMATION, SCREEN_OFF_ANIMATION_VALIDATOR);
+            VALIDATORS.put(VOLUME_ROCKER_WAKE, VOLUME_ROCKER_WAKE_VALIDATOR);
             // Komodo panels end
         }
 
