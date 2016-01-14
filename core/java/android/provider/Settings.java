@@ -5754,6 +5754,20 @@ public final class Settings {
                 "high_touch_sensitivity_enable";
 
         /**
+         * whether to enable or disable vibration on succesful fingerprint auth
+         *
+         * @hide
+         */
+        public static final String FP_SUCCESS_VIBRATE = "fingerprint_success_vib";
+
+        /**
+         * whether to enable or disable vibration on failed fingerprint auth
+         *
+         * @hide
+         */
+        public static final String FP_ERROR_VIBRATE = "fingerprint_error_vib";
+
+        /**
          * These are all public system settings
          *
          * @hide
