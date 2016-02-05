@@ -223,7 +223,7 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.Future;
 
 // LineageHardware
-import com.android.server.nusantara.LineageHardwareService;
+import com.android.server.komodo.LineageHardwareService;
 
 /**
  * Entry point to {@code system_server}.
