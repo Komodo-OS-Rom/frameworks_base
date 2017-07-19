@@ -5768,6 +5768,12 @@ public final class Settings {
         public static final String FP_ERROR_VIBRATE = "fingerprint_error_vib";
 
         /**
+         * Whether to display 4G icon instead LTE
+         * @hide
+         */
+        public static final String SHOW_FOURG_ICON = "show_fourg_icon";
+
+        /**
          * These are all public system settings
          *
          * @hide
