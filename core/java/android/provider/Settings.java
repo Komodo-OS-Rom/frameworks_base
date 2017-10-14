@@ -10037,6 +10037,25 @@ public final class Settings {
         private static final Validator TAP_GESTURE_VALIDATOR = BOOLEAN_VALIDATOR;
 
         /**
+         * Whether to show the auto brightness icon in quick settings panel.
+         * @hide
+         */
+        public static final String QS_SHOW_AUTO_BRIGHTNESS = "qs_show_auto_brightness";
+
+        /** @hide */
+        private static final Validator QS_SHOW_AUTO_BRIGHTNESS_VALIDATOR = BOOLEAN_VALIDATOR;
+
+        /**
+         * Whether to show the brightness slider in quick settings panel.
+         * 0 = 0ff, 1 = on
+         * @hide
+         */
+        public static final String QS_SHOW_BRIGHTNESS_SLIDER = "qs_show_brightness_slider";
+
+        /** @hide */
+        private static final Validator QS_SHOW_BRIGHTNESS_SLIDER_VALIDATOR = BOOLEAN_VALIDATOR;
+
+        /**
          * This are the settings to be backed up.
          *
          * NOTE: Settings are backed up and restored in the order they appear
@@ -10173,6 +10192,8 @@ public final class Settings {
             AWARE_LOCK_ENABLED,
             AWARE_TAP_PAUSE_GESTURE_COUNT,
             AWARE_TAP_PAUSE_TOUCH_COUNT
+            QS_SHOW_AUTO_BRIGHTNESS,
+            QS_SHOW_BRIGHTNESS_SLIDER
         };
 
         /**
@@ -10370,6 +10391,8 @@ public final class Settings {
             VALIDATORS.put(AWARE_TAP_PAUSE_GESTURE_COUNT, NON_NEGATIVE_INTEGER_VALIDATOR);
             VALIDATORS.put(AWARE_TAP_PAUSE_TOUCH_COUNT, NON_NEGATIVE_INTEGER_VALIDATOR);
             VALIDATORS.put(TAP_GESTURE, TAP_GESTURE_VALIDATOR);
+            VALIDATORS.put(QS_SHOW_AUTO_BRIGHTNESS, QS_SHOW_AUTO_BRIGHTNESS_VALIDATOR);
+            VALIDATORS.put(QS_SHOW_BRIGHTNESS_SLIDER, QS_SHOW_BRIGHTNESS_SLIDER_VALIDATOR);
         }
 
         /**
