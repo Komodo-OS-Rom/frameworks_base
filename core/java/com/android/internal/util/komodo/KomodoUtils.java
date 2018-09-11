@@ -24,6 +24,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.hardware.input.InputManager;
+import android.content.res.Resources;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.PowerManager;
@@ -39,6 +40,8 @@ import android.view.KeyEvent;
 
 import com.android.internal.statusbar.IStatusBarService;
 import android.util.DisplayMetrics;
+
+import java.util.Locale;
 
 /**
  * Some custom utilities
@@ -61,6 +64,12 @@ public class KomodoUtils {
 
     public static void toggleCameraFlash() {
         FireActions.toggleCameraFlash();
+    }
+
+    // Check for Chinese language
+    public static boolean isChineseLanguage() {
+       return Resources.getSystem().getConfiguration().locale.getLanguage().startsWith(
+               Locale.CHINESE.getLanguage());
     }
 
     public static void sendKeycode(int keycode) {
