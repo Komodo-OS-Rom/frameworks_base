@@ -5774,6 +5774,12 @@ public final class Settings {
         public static final String SHOW_FOURG_ICON = "show_fourg_icon";
 
         /**
+         * Whether to show VoLTE icon or not
+         * @hide
+         */
+        public static final String SHOW_VOLTE_ICON = "show_volte_icon";
+
+        /**
          * These are all public system settings
          *
          * @hide
