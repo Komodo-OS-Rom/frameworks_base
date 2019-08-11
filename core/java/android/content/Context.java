@@ -1,4 +1,4 @@
-/*
+ *
  * Copyright (C) 2006 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -4684,6 +4684,22 @@ public abstract class Context {
      * @hide
      */
     public static final String DYNAMIC_SYSTEM_SERVICE = "dynamic_system";
+
+    /**
+     * Use with {@link #getSystemService} to retrieve a
+     * {@link android.os.PocketManager} for accessing and listening to device pocket state.
+     *
+     * @hide
+     * @see #getSystemService
+     * @see android.os.PocketManager
+     */
+    public static final String POCKET_SERVICE = "pocket";
+
+    /**
+     * Long screenshot
+     * @hide
+     */
+    public static final String LONGSCREENSHOT_SERVICE = "longshot";
 
     /**
      * Determine whether the given permission is allowed for a particular

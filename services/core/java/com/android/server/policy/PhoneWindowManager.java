@@ -200,6 +200,7 @@ import android.view.autofill.AutofillManagerInternal;
 
 import com.android.internal.R;
 import com.android.internal.accessibility.AccessibilityShortcutController;
+import com.android.internal.custom.longshot.ILongScreenshotManager;
 import com.android.internal.logging.MetricsLogger;
 import com.android.internal.logging.nano.MetricsProto;
 import com.android.internal.os.RoSystemProperties;
@@ -1468,7 +1469,14 @@ public class PhoneWindowManager implements WindowManagerPolicy {
 
         @Override
         public void run() {
+<<<<<<< HEAD
             mDefaultDisplayPolicy.takeScreenshot(mScreenshotType);
+=======
+            boolean dockMinimized = mWindowManagerInternal.isMinimizedDock();
+            if (!mPocketLockShowing) {
+                mDefaultDisplayPolicy.takeScreenshot(mScreenshotType, dockMinimized);
+            }
+>>>>>>> 34881860d55... base: Port extended screenshot function from OOS
         }
     }
 
@@ -1481,6 +1489,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     }
 
     void showGlobalActionsInternal() {
+        stopLongshot();
         if (mGlobalActions == null) {
             mGlobalActions = new GlobalActions(mContext, mWindowManagerFuncs);
         }
@@ -1489,6 +1498,30 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         // since it took two seconds of long press to bring this up,
         // poke the wake lock so they have some time to see the dialog.
         mPowerManager.userActivity(SystemClock.uptimeMillis(), false);
+    }
+
+    private void stopLongshot() {
+        ILongScreenshotManager shot = ILongScreenshotManager.Stub.asInterface(ServiceManager.getService(Context.LONGSCREENSHOT_SERVICE));
+        if (shot != null) {
+            try {
+                if (shot.isLongshotMode()) {
+                    shot.stopLongshot();
+                }
+            } catch (RemoteException e) {
+                Slog.d(TAG, e.toString());
+            }
+        }
+    }
+
+    @Override
+    public void stopLongshotConnection() {
+        mDefaultDisplayPolicy.stopLongshotConnection();
+    }
+
+    @Override
+    public void takeOPScreenshot(int type) {
+        mScreenshotRunnable.setScreenshotType(type);
+        mHandler.post(mScreenshotRunnable);
     }
 
     boolean isDeviceProvisioned() {

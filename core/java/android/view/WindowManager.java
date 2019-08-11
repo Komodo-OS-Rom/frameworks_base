@@ -1111,6 +1111,12 @@ public interface WindowManager extends ViewManager {
         public static final int TYPE_APPLICATION_OVERLAY = FIRST_SYSTEM_WINDOW + 38;
 
         /**
+         * Window type: Long screenshot overlay
+         * @hide
+         */
+        public static final int TYPE_SYSTEM_LONGSHOT = FIRST_SYSTEM_WINDOW + 39;
+
+        /**
          * End of types of system windows.
          */
         public static final int LAST_SYSTEM_WINDOW      = 2999;
@@ -1641,7 +1647,7 @@ public interface WindowManager extends ViewManager {
          * If the window has requested hardware acceleration, but this is not
          * allowed in the process it is in, then still render it as if it is
          * hardware accelerated.  This is used for the starting preview windows
-         * in the system process, which don't need to have the overhead of
+         * in the system process, which don't need to have the overWhead of
          * hardware acceleration (they are just a static rendering), but should
          * be rendered as such to match the actual window of the app even if it
          * is hardware accelerated.
