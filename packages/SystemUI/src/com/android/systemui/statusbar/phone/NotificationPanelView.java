@@ -48,6 +48,7 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.util.MathUtils;
 import android.view.LayoutInflater;
+import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.VelocityTracker;
 import android.view.View;
@@ -63,6 +64,7 @@ import android.widget.ImageView;
 import com.android.internal.annotations.VisibleForTesting;
 import com.android.internal.logging.MetricsLogger;
 import com.android.internal.logging.nano.MetricsProto.MetricsEvent;
+import com.android.internal.util.komodo.KomodoUtils;
 import com.android.keyguard.KeyguardClockSwitch;
 import com.android.keyguard.KeyguardStatusView;
 import com.android.keyguard.KeyguardUpdateMonitor;
@@ -247,6 +249,9 @@ public class NotificationPanelView extends PanelView implements
     private int mTrackingPointer;
     private VelocityTracker mQsVelocityTracker;
     private boolean mQsTracking;
+
+    private GestureDetector mLockscreenDoubleTapToSleep;
+    private boolean mIsLockscreenDoubleTapEnabled;
 
     /**
      * If set, the ongoing touch gesture might both trigger the expansion in {@link PanelView} and
@@ -490,6 +495,14 @@ public class NotificationPanelView extends PanelView implements
         });
         mBottomAreaShadeAlphaAnimator.setDuration(160);
         mBottomAreaShadeAlphaAnimator.setInterpolator(Interpolators.ALPHA_OUT);
+        mLockscreenDoubleTapToSleep = new GestureDetector(context,
+                new GestureDetector.SimpleOnGestureListener() {
+            @Override
+            public boolean onDoubleTap(MotionEvent e) {
+                KomodoUtils.switchScreenOff(mContext);
+                return true;
+            }
+        });
     }
 
     /**
@@ -1310,6 +1323,10 @@ public class NotificationPanelView extends PanelView implements
                 && mPulseExpansionHandler.onTouchEvent(event)) {
             // We're expanding all the other ones shouldn't get this anymore
             return true;
+        }
+        if (mIsLockscreenDoubleTapEnabled && !mPulsing && !mDozing
+                && mBarState == StatusBarState.KEYGUARD) {
+            mLockscreenDoubleTapToSleep.onTouchEvent(event);
         }
         if (mListenForHeadsUp && !mHeadsUpTouchHelper.isTrackingHeadsUp()
                 && mHeadsUpTouchHelper.onInterceptTouchEvent(event)) {
@@ -3617,5 +3634,9 @@ public class NotificationPanelView extends PanelView implements
             }
             mDismissAllButton.startAnimation(mDismissShowAnim);
         }
+    }
+
+    public void setLockscreenDoubleTapToSleep(boolean isDoubleTapEnabled) {
+        mIsLockscreenDoubleTapEnabled = isDoubleTapEnabled;
     }
 }
