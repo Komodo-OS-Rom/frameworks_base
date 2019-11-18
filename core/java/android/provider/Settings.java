@@ -10578,6 +10578,12 @@ public final class Settings {
         public static final String MEDIA_CONTROLS_RECOMMENDATION = "qs_media_recommend";
 
         /**
+         * Whether to show or hide the arrow for back gesture
+         * @hide
+         */
+        public static final String SHOW_BACK_ARROW_GESTURE = "show_back_arrow_gesture";
+
+        /**
          * Controls magnification mode when magnification is enabled via a system-wide triple tap
          * gesture or the accessibility shortcut.
          *
