@@ -140,11 +140,15 @@ public class TileLayout extends ViewGroup implements QSTileLayout {
         final int availableHeight = MeasureSpec.getSize(heightMeasureSpec) - mCellMarginTop
                 + mCellMarginVertical;
         final int previousRows = mRows;
-        mRows = availableHeight / (mCellHeight + mCellMarginVertical);
-        if (mRows >= mMaxAllowedRows) {
-            mRows = mMaxAllowedRows;
-        } else if (mRows <= 1) {
-            mRows = 1;
+
+        if (mContext.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+            mRows = Settings.System.getIntForUser(mContext.getContentResolver(),
+                    Settings.System.QS_LAYOUT_ROWS, 3,
+                    UserHandle.USER_CURRENT);
+        } else {
+            mRows = Settings.System.getIntForUser(mContext.getContentResolver(),
+                        Settings.System.QS_LAYOUT_ROWS_LANDSCAPE, 2,
+                        UserHandle.USER_CURRENT);
         }
         if (mRows > (tilesCount + mColumns - 1) / mColumns) {
             mRows = (tilesCount + mColumns - 1) / mColumns;
