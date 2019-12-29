@@ -110,7 +110,6 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
     private Record mDetailRecord;
 
     private BrightnessMirrorController mBrightnessMirrorController;
-    private View mDivider;
 
     public QSPanel(Context context) {
         this(context, null);
@@ -162,11 +161,25 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
                 com.android.internal.R.bool.config_automatic_brightness_available);
     }
 
-    protected void addDivider() {
-        mDivider = LayoutInflater.from(mContext).inflate(R.layout.qs_divider, this, false);
-        mDivider.setBackgroundColor(Utils.applyAlpha(mDivider.getAlpha(),
-                getColorForState(mContext, Tile.STATE_ACTIVE)));
-        addView(mDivider);
+    private void addQSPanel() {
+        if (mBrightnessSlider == 1) {
+            addView(mBrightnessView);
+            addView((View) mTileLayout);
+        } else {
+            addView((View) mTileLayout);
+            addView(mBrightnessView);
+        }
+
+        addView(mFooter.getView());
+        updateResources();
+    }
+
+    private void restartQSPanel() {
+        if (mFooter.getView() != null) removeView(mFooter.getView());
+        if ((View) mTileLayout != null) removeView((View) mTileLayout);
+        if (mBrightnessView != null) removeView(mBrightnessView);
+
+        addQSPanel();
     }
 
     @Override
@@ -188,7 +201,7 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
     }
 
     public View getDivider() {
-        return mDivider;
+        return LayoutInflater.from(mContext).inflate(R.layout.qs_divider, this, false);
     }
 
     public QSTileRevealController getQsTileRevealController() {
