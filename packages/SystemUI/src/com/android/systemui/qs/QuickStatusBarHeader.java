@@ -323,11 +323,11 @@ public class QuickStatusBarHeader extends RelativeLayout implements
 
     private List<String> getIgnoredIconSlots() {
         ArrayList<String> ignored = new ArrayList<>();
-        ignored.add(mContext.getResources().getString(
-                com.android.internal.R.string.status_bar_camera));
-        ignored.add(mContext.getResources().getString(
-                com.android.internal.R.string.status_bar_microphone));
-        if (mPermissionsHubEnabled) {
+        if (mBatteryInQS) {
+            ignored.add(mContext.getResources().getString(
+                    com.android.internal.R.string.status_bar_camera));
+            ignored.add(mContext.getResources().getString(
+                    com.android.internal.R.string.status_bar_microphone));
             ignored.add(mContext.getResources().getString(
                     com.android.internal.R.string.status_bar_location));
         }
@@ -347,7 +347,7 @@ public class QuickStatusBarHeader extends RelativeLayout implements
     }
 
     private void setChipVisibility(boolean chipVisible) {
-        if (chipVisible && mPermissionsHubEnabled) {
+        if (chipVisible && mPermissionsHubEnabled && mBatteryInQS) {
             mPrivacyChip.setVisibility(View.VISIBLE);
             // Makes sure that the chip is logged as viewed at most once each time QS is opened
             // mListening makes sure that the callback didn't return after the user closed QS
