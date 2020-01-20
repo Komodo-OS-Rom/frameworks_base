@@ -64,7 +64,7 @@ public class CarrierLabel extends TextView implements DarkReceiver {
 
         int mCarrierLabel = Settings.System.getIntForUser(mContext.getContentResolver(),
                 Settings.System.STATUS_BAR_SHOW_CARRIER, 1, UserHandle.USER_CURRENT);
-        if (aosipUtils.hasNotch(mContext)) {
+        if (KomodoUtils.hasNotch(mContext)) {
             switch (mCarrierLabel) {
                 case 0:
                     setCarrierLabel("0");
