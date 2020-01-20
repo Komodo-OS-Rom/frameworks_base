@@ -4742,10 +4742,6 @@ public final class Settings {
          */
         public static final String SMART_CHARGING_LEVEL = "smart_charging_level";
 
-        /********************
-        * Komodo Panels end
-        *********************/
-
         /**
          * Whether to enable Ambient edge light
          * @hide
@@ -4966,6 +4962,22 @@ public final class Settings {
         /** @hide */
         private static final Validator SCREEN_OFF_ANIMATION_VALIDATOR =
                 ANY_INTEGER_VALIDATOR;
+
+        /**
+         * show carrier in statusbar. The value is
+         * int (1: Show or 0: Hide).
+         */
+        public static final String STATUS_BAR_CARRIER = "status_bar_carrier";
+
+        /**
+         * custom carrier label. The value is
+         * String.
+         */
+        public static final String CUSTOM_CARRIER_LABEL = "custom_carrier_label";
+
+       /********************
+        * Komodo Panels end
+        *********************/
 
         /**
          * Settings to backup. This is here so that it's in the same place as the settings
