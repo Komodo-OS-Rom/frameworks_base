@@ -17,19 +17,16 @@
 package com.android.systemui.komodo.carrierlabel;
 
 import android.content.BroadcastReceiver;
-import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.database.ContentObserver;
+import android.graphics.Rect;
 import android.os.Handler;
 import android.os.UserHandle;
 import android.provider.Settings;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.AttributeSet;
-import android.util.Log;
-import android.view.View;
 import android.widget.TextView;
 
 import com.android.internal.telephony.TelephonyIntents;
@@ -38,11 +35,7 @@ import com.android.internal.util.komodo.KomodoUtils;
 import com.android.systemui.R;
 import com.android.systemui.komodo.carrierlabel.SpnOverride;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.TimeZone;
-
-public class CarrierLabel extends TextView {
+public class CarrierLabel extends TextView implements DarkReceiver {
 
     private Context mContext;
     private boolean mAttached;
@@ -60,6 +53,30 @@ public class CarrierLabel extends TextView {
         super(context, attrs, defStyle);
         mContext = context;
         updateNetworkName(true, null, false, null);
+
+        int mCarrierLabel = Settings.System.getIntForUser(mContext.getContentResolver(),
+                Settings.System.STATUS_BAR_SHOW_CARRIER, 1, UserHandle.USER_CURRENT);
+        if (aosipUtils.hasNotch(mContext)) {
+            switch (mCarrierLabel) {
+                case 0:
+                    setCarrierLabel("0");
+                    break;
+                case 1:
+                    setCarrierLabel("1");
+                    break;
+                case 2:
+                    setCarrierLabel("1");
+                    break;
+                case 3:
+                    setCarrierLabel("1");
+                    break;
+            }
+        }
+    }
+
+    private void setCarrierLabel(String value) {
+        Settings.System.putInt(mContext.getContentResolver(),
+                Settings.System.STATUS_BAR_SHOW_CARRIER, Integer.parseInt(value));
     }
 
     @Override
