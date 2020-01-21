@@ -5350,6 +5350,15 @@ public final class Settings {
                 BOOLEAN_VALIDATOR;
 
         /**
+         * Show data usage in QS header
+         * @hide
+         */
+        public static final String QS_DATAUSAGE = "qs_datausage";
+
+        /** @hide */
+        private static final Validator QS_DATAUSAGE_VALIDATOR = ANY_INTEGER_VALIDATOR;
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *
@@ -5461,8 +5470,9 @@ public final class Settings {
             FINGERPRINT_SUCCESS_VIB,
             HEADS_UP_TIMEOUT,
 	    HEADS_UP_NOTIFICATION_SNOOZE,
-            DOUBLE_TAP_SLEEP_GESTURE
-            // komodo
+            DOUBLE_TAP_SLEEP_GESTURE,
+            QS_DATAUSAGE,
+            // Komodo panel end
         };
 
         /**
@@ -5646,7 +5656,8 @@ public final class Settings {
             PRIVATE_SETTINGS.add(HEADS_UP_TIMEOUT);
             PRIVATE_SETTINGS.add(HEADS_UP_NOTIFICATION_SNOOZE);
             PRIVATE_SETTINGS.add(DOUBLE_TAP_SLEEP_GESTURE);
-            // Komodo panels end
+            PRIVATE_SETTINGS.add(QS_DATAUSAGE);
+            // Komodo Panel Ends
         }
 
         /**
@@ -5800,7 +5811,8 @@ public final class Settings {
             VALIDATORS.put(HEADS_UP_TIMEOUT,HEADS_UP_TIMEOUT_VALIDATOR);
             VALIDATORS.put(HEADS_UP_NOTIFICATION_SNOOZE,HEADS_UP_NOTIFICATION_SNOOZE_VALIDATOR);
             VALIDATORS.put(DOUBLE_TAP_SLEEP_GESTURE, DOUBLE_TAP_SLEEP_GESTURE_VALIDATOR);
-            // Komodo panels end
+            VALIDATORS.put(QS_DATAUSAGE, QS_DATAUSAGE_VALIDATOR);
+            // Komodo Panel Ends
         }
 
         /**

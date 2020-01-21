@@ -212,6 +212,7 @@ import com.android.systemui.statusbar.ScrimView;
 import com.android.systemui.statusbar.StatusBarState;
 import com.android.systemui.statusbar.SysuiStatusBarStateController;
 import com.android.systemui.statusbar.VibratorHelper;
+import com.android.systemui.statusbar.info.DataUsageView;
 import com.android.systemui.statusbar.notification.ActivityLaunchAnimator;
 import com.android.systemui.statusbar.notification.BypassHeadsUpNotifier;
 import com.android.systemui.statusbar.notification.DynamicPrivacyController;
@@ -4083,6 +4084,10 @@ public class StatusBar extends SystemUI implements DemoMode,
     private void setHeadsUpBlacklist() {
         if (mPresenter != null)
             mPresenter.setHeadsUpBlacklist();
+    }
+
+    public void updateQSDataUsageInfo() {
+        DataUsageView.updateUsage();
     }
 
     public int getWakefulnessState() {
