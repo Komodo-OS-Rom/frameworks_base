@@ -121,4 +121,6 @@
     <string name="screenrecord_stopdot_title">Show stop dot</string>
     <string name="screenrecord_video_bitrate_title">Video Bitrate</string>
 
+    <!-- QS Data Usage -->
+    <string name="usage_data">used</string>
 </resources>
