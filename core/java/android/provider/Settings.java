@@ -4557,6 +4557,12 @@ public final class Settings {
                 ANY_INTEGER_VALIDATOR;
 
         /**
+         * Show data usage in QS header
+         * @hide
+         */
+        public static final String QS_DATAUSAGE = "qs_datausage";
+
+        /**
           * Whether to disable showing arrows in network traffic indicators
           * @hide
          */

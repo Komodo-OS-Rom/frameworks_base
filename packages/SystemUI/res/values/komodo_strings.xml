@@ -23,5 +23,7 @@
     <string name="lte_off">LTE OFF</string>
 
     <string name="global_action_restart_advanced">Advanced reboot</string>
-
+   
+   !--- QS Usage Data -->
+   <string name="usage_data">used</string>
 </resources>

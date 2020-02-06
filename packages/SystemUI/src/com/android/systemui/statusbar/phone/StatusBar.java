@@ -188,6 +188,7 @@ import com.android.systemui.statusbar.KeyboardShortcuts;
 import com.android.systemui.statusbar.KeyguardIndicationController;
 import com.android.systemui.statusbar.NavigationBarController;
 import com.android.systemui.statusbar.NotificationListener;
+import com.android.systemui.statusbar.info.DataUsageView;
 import com.android.systemui.statusbar.NotificationLockscreenUserManager;
 import com.android.systemui.statusbar.NotificationMediaManager;
 import com.android.systemui.statusbar.NotificationPresenter;
@@ -449,6 +450,8 @@ public class StatusBar extends SystemUI implements DemoMode,
         : null;
 
     private ScreenPinningRequest mScreenPinningRequest;
+    
+    private boolean dataupdated = false;
 
     private final MetricsLogger mMetricsLogger = Dependency.get(MetricsLogger.class);
 
