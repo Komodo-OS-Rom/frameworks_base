@@ -96,6 +96,10 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
     private int mShowLogo;
     private int mLogoColor;
 
+    // Custom Carrier
+    private View mCustomCarrierLabel;
+    private int mShowCarrierLabel;
+
     private class SettingsObserver extends ContentObserver {
        SettingsObserver(Handler handler) {
            super(handler);
@@ -117,6 +121,9 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
 	 mContentResolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.STATUS_BAR_LOGO_COLOR),
 		    false, this, UserHandle.USER_ALL);
+         mContentResolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.STATUS_BAR_CARRIER),
+                    false, this, UserHandle.USER_ALL);
        }
 
         @Override
@@ -174,6 +181,7 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
         mRightClock = mStatusBar.findViewById(R.id.right_clock);
 	mKonodoLogo = mStatusBar.findViewById(R.id.status_bar_logo);
 	mKonodoLogoRight = mStatusBar.findViewById(R.id.status_bar_logo_right);
+        mCustomCarrierLabel = mStatusBar.findViewById(R.id.statusbar_carrier_text);
         updateSettings(false);
 	updateLogoSettings(false);
         showSystemIconArea(false);
@@ -468,6 +476,9 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
     }
 
     public void updateSettings(boolean animate) {
+        mShowCarrierLabel = Settings.System.getIntForUser(
+                mContentResolver, Settings.System.STATUS_BAR_CARRIER, 1,
+                UserHandle.USER_CURRENT);
         if (mStatusBar == null) return;
 
         if (getContext() == null) {
