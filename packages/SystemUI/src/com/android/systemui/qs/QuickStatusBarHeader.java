@@ -160,12 +160,6 @@ public class QuickStatusBarHeader extends RelativeLayout implements
             resolver.registerContentObserver(Settings.System
                     .getUriFor(Settings.System.OMNI_STATUS_BAR_CUSTOM_HEADER), false,
                     this, UserHandle.USER_ALL);
-            resolver.registerContentObserver(Settings.System
-                    .getUriFor(Settings.System.QS_BATTERY_MODE), false,
-                    this, UserHandle.USER_ALL);
-            resolver.registerContentObserver(Settings.System
-                    .getUriFor(Settings.System.STATUS_BAR_BATTERY_STYLE), false,
-                    this, UserHandle.USER_ALL);
             }
 
         @Override
@@ -173,6 +167,8 @@ public class QuickStatusBarHeader extends RelativeLayout implements
             updateSettings();
         }
     }
+
+    private SettingsObserver mSettingsObserver = new SettingsObserver(mHandler);
 
     // omni additions start
     private boolean mLandscape;
@@ -199,7 +195,6 @@ public class QuickStatusBarHeader extends RelativeLayout implements
     }
     private OmniSettingsObserver mOmniSettingsObserver = new OmniSettingsObserver(mHandler);
 
-    private SettingsObserver mSettingsObserver = new SettingsObserver(mHandler);
     private final BroadcastReceiver mRingerReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -307,7 +302,9 @@ public class QuickStatusBarHeader extends RelativeLayout implements
         mBatteryRemainingIcon = findViewById(R.id.batteryRemainingIcon);
         // Don't need to worry about tuner settings for this icon
         mBatteryRemainingIcon.setIgnoreTunerUpdates(true);
-        mBatteryRemainingIcon.setPercentShowMode(BatteryMeterView.MODE_ON);
+        // QS will always show the estimate, and BatteryMeterView handles the case where
+        // it's unavailable or charging
+        mBatteryRemainingIcon.setPercentShowMode(BatteryMeterView.MODE_ESTIMATE);
         mBatteryRemainingIcon.setOnClickListener(this);
         mRingerModeTextView.setSelected(true);
         mNextAlarmTextView.setSelected(true);
@@ -475,34 +472,6 @@ public class QuickStatusBarHeader extends RelativeLayout implements
         updateHeaderTextContainerAlphaAnimator();
         updatePrivacyChipAlphaAnimator();
     }
-
-     private void updateQSBatteryMode() {
-        int showEstimate = Settings.System.getInt(mContext.getContentResolver(),
-        Settings.System.QS_BATTERY_MODE, 0);
-        if (showEstimate == 0) {
-            mBatteryRemainingIcon.mShowBatteryPercent = 0;
-            mBatteryRemainingIcon.setPercentShowMode(BatteryMeterView.MODE_OFF);
-        } else if (showEstimate == 1) {
-            mBatteryRemainingIcon.mShowBatteryPercent = 0;
-            mBatteryRemainingIcon.setPercentShowMode(BatteryMeterView.MODE_ON);
-        } else if (showEstimate == 2) {
-            mBatteryRemainingIcon.mShowBatteryPercent = 1;
-            mBatteryRemainingIcon.setPercentShowMode(BatteryMeterView.MODE_OFF);
-        } else if (showEstimate == 3) {
-            mBatteryRemainingIcon.mShowBatteryPercent = 0;
-            mBatteryRemainingIcon.setPercentShowMode(BatteryMeterView.MODE_ESTIMATE);
-        }
-        mBatteryRemainingIcon.updatePercentView();
-        mBatteryRemainingIcon.updateVisibility();
-     }
-
-     private void updateSBBatteryStyle() {
-        mBatteryRemainingIcon.mBatteryStyle = Settings.System.getInt(mContext.getContentResolver(),
-        Settings.System.STATUS_BAR_BATTERY_STYLE, 0);
-        mBatteryRemainingIcon.updateBatteryStyle();
-        mBatteryRemainingIcon.updatePercentView();
-        mBatteryRemainingIcon.updateVisibility();
-     }
 
     private void updateStatusIconAlphaAnimator() {
         mStatusIconsAlphaAnimator = new TouchAnimator.Builder()
@@ -764,9 +733,6 @@ public class QuickStatusBarHeader extends RelativeLayout implements
                 UserHandle.USER_CURRENT) == 1;
         updateResources();
         updateStatusbarProperties();
-        updateQSBatteryMode();
-        updateSBBatteryStyle();
-        updateResources();
     }
 
     // Update color schemes in landscape to use wallpaperTextColor
