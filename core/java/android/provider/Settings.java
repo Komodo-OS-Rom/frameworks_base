@@ -5086,24 +5086,6 @@ public final class Settings {
         public static final String QS_SHOW_BATTERY_ESTIMATE = "qs_show_battery_estimate";
 
         /**
-         * Network traffic inactivity threshold (default is 1 kBs)
-         * @hide
-         */
-        public static final String NETWORK_TRAFFIC_AUTOHIDE_THRESHOLD = "network_traffic_autohide_threshold";
-         /** @hide */
-        private static final Validator NETWORK_TRAFFIC_AUTOHIDE_THRESHOLD_VALIDATOR =
-                ANY_INTEGER_VALIDATOR;
-
-        /**
-         * Specify refresh duration for network traffic
-         * @hide
-         */
-        public static final String NETWORK_TRAFFIC_REFRESH_INTERVAL = "network_traffic_refresh_interval";
-         /** @hide */
-        private static final Validator NETWORK_TRAFFIC_REFRESH_INTERVAL_VALIDATOR =
-                ANY_INTEGER_VALIDATOR;
-
-        /**
          * Network traffic layout
          * @hide
          */
