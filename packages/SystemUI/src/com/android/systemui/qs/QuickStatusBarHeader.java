@@ -118,7 +118,6 @@ public class QuickStatusBarHeader extends RelativeLayout implements
     private boolean mExpanded;
     private boolean mListening;
     private boolean mQsDisabled;
-    private boolean mLandscape;
 
     private QSCarrierGroup mCarrierGroup;
     protected QuickQSPanel mHeaderQsPanel;
