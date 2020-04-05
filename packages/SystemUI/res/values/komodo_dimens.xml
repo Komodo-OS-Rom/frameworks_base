@@ -55,5 +55,10 @@
     <dimen name="dismiss_all_button_height_width">58dp</dimen>
     <dimen name="dismiss_all_button_margin_bottom">35dp</dimen>
     <dimen name="dismiss_all_fab_src_size">30dp</dimen>
+    <!-- Screen record -->
+    <dimen name="screenrecord_dialog_padding">18dp</dimen>
+    <dimen name="screenrecord_logo_size">24dp</dimen>
+    <dimen name="screenrecord_status_icon_radius">5dp</dimen>
+    <dimen name="screenrecord_status_text_size">14sp</dimen>
 
 </resources>

@@ -18,7 +18,7 @@
 
     <!-- The default tiles to display in QuickSettings -->
     <string name="quick_settings_tiles_extra" translatable="false">
-        lte,caffeine,heads_up,sync,dataswitch,compass,gaming,screenshot
+        lte,caffeine,heads_up,sync,dataswitch,compass,gaming,screenshot,screen_record
     </string>
 
     <!-- Show battery icon in the QS Panel instead of in the header -->
