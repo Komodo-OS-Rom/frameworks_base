@@ -5328,10 +5328,10 @@ public final class Settings {
         public static final String SCREENRECORD_STOP_DOT = "screenrecord_stop_dot";
 
         /**
-         * Screenrecord: low quality
+         * Screenrecord: video bitrate
          * @hide
          */
-        public static final String SCREENRECORD_LOW_QUALITY = "screenrecord_low_quality";
+        public static final String SCREENRECORD_VIDEO_BITRATE = "screenrecord_video_bitrate";
 
         /**
          * IMPORTANT: If you add a new public settings you also have to add it to
