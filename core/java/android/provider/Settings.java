@@ -5309,12 +5309,6 @@ public final class Settings {
         public static final String SCREENRECORD_AUDIO_SOURCE = "screenrecord_audio_source";
 
         /**
-         * Screenrecord: enable mic
-         * @hide
-         */
-        public static final String SCREENRECORD_ENABLE_MIC = "screenrecord_enable_mic";
-
-        /**
          * Screenrecord: show taps
          * @hide
          */
