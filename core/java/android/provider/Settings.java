@@ -5310,10 +5310,10 @@ public final class Settings {
                 "double_tap_sleep_lockscreen";
 
         /**
-         * Screenrecord: enable mic
+         * Screenrecord: audio source
          * @hide
          */
-        public static final String SCREENRECORD_ENABLE_MIC = "screenrecord_enable_mic";
+        public static final String SCREENRECORD_AUDIO_SOURCE = "screenrecord_audio_source";
 
         /**
          * Screenrecord: show taps
