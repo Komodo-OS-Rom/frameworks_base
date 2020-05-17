@@ -20,15 +20,22 @@ import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.UserHandle;
+import android.provider.Settings;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.Switch;
 
 import com.android.systemui.Dependency;
 import com.android.systemui.R;
+
+import static android.provider.Settings.System.SCREENRECORD_AUDIO_SOURCE;
 
 public class ScreenRecordDialog extends Activity {
 
@@ -38,7 +45,9 @@ public class ScreenRecordDialog extends Activity {
     private static final long COUNTDOWN_INTERVAL = 1000;
 
     private RecordingController mController;
-    private Switch mAudioSwitch;
+    private int mAudioSourceOpt;
+
+    private Spinner mAudioSourceSpinner;
     private Switch mTapsSwitch;
 
     @Override
@@ -64,14 +73,43 @@ public class ScreenRecordDialog extends Activity {
                 finish();
             }
         });
-        mAudioSwitch = (Switch) findViewById(R.id.screenrecord_audio_switch);
         mTapsSwitch = (Switch) findViewById(R.id.screenrecord_taps_switch);
+
+        // audio source spinner
+        mAudioSourceSpinner = findViewById(R.id.spinner_audio_source);
+        ArrayAdapter<CharSequence> audioSourceAdapter = ArrayAdapter.createFromResource(this,
+            R.array.screen_audio_recording_entries, android.R.layout.simple_spinner_item);
+        audioSourceAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mAudioSourceSpinner.setAdapter(audioSourceAdapter);
+        initialCheckSpinner(mAudioSourceSpinner, SCREENRECORD_AUDIO_SOURCE, 0 /* disabled */);
+        setSpinnerListener(mAudioSourceSpinner, SCREENRECORD_AUDIO_SOURCE);
+    }
+
+    private void initialCheckSpinner(Spinner spin, String setting, int defaultValue) {
+        spin.setSelection(
+                Settings.System.getIntForUser(this.getContentResolver(),
+                        setting, defaultValue, UserHandle.USER_CURRENT));
+    }
+
+    private void setSpinnerListener(Spinner spin, String setting) {
+        spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Settings.System.putIntForUser(getContentResolver(),
+                        setting, position, UserHandle.USER_CURRENT);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
     }
 
     private void requestScreenCapture() {
-        mController.startCountdown(COUNTDOWN_MILLIS, COUNTDOWN_INTERVAL, PendingIntent.getForegroundService(this, REQUEST_CODE, 
-                RecordingService.getStartIntent(this, RESULT_OK, (Intent) null, mAudioSwitch.isChecked(), 
-                mTapsSwitch.isChecked()), PendingIntent.FLAG_UPDATE_CURRENT), PendingIntent.getService(this, REQUEST_CODE, 
+        mAudioSourceOpt = mAudioSourceSpinner.getSelectedItemPosition();
+        mController.startCountdown(COUNTDOWN_MILLIS, COUNTDOWN_INTERVAL, PendingIntent.getForegroundService(this, REQUEST_CODE,
+                RecordingService.getStartIntent(this, RESULT_OK, (Intent) null, mAudioSourceOpt,
+                mTapsSwitch.isChecked()), PendingIntent.FLAG_UPDATE_CURRENT), PendingIntent.getService(this, REQUEST_CODE,
                 RecordingService.getStopIntent(this), PendingIntent.FLAG_UPDATE_CURRENT));
     }
 }
