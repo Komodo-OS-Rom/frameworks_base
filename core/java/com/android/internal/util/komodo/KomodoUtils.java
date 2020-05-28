@@ -27,6 +27,8 @@ import android.hardware.input.InputManager;
 import android.content.res.Resources;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.PowerManager;
