@@ -4148,10 +4148,6 @@ public class StatusBar extends SystemUI implements DemoMode,
             mPresenter.setHeadsUpBlacklist();
     }
 
-    public void updateQSDataUsageInfo() {
-        DataUsageView.updateUsage();
-    }
-
     public int getWakefulnessState() {
         return mWakefulnessLifecycle.getWakefulness();
     }
