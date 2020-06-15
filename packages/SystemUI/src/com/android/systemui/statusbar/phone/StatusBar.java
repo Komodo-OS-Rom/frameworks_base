@@ -4138,6 +4138,10 @@ public class StatusBar extends SystemUI implements DemoMode,
         mNotificationInterruptionStateProvider.setGamingPeekMode(mGamingModeActivated && mHeadsUpDisabled);
     }
 
+    public void updateQSDataUsageInfo() {
+        DataUsageView.updateUsage();
+    }
+
     private void setHeadsUpStoplist() {
         if (mPresenter != null)
             mPresenter.setHeadsUpStoplist();
