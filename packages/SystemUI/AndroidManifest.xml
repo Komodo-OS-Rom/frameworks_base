@@ -253,6 +253,10 @@
 
     <uses-permission android:name="android.permission.ACCESS_SURFACE_FLINGER" />
 
+    <!-- Reboot tile -->
+    <uses-permission android:name="android.permission.REBOOT" />
+    <uses-permission android:name="android.permission.RECOVERY" />
+
     <!-- Pixel Live Wallpapers -->
     <protected-broadcast android:name="com.breel.wallpapers.NOTIFICATION_RECEIVED"/>
     <permission android:name="com.breel.wallpapers.notifications"/>
