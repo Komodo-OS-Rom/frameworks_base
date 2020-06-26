@@ -124,7 +124,7 @@ public class QSPanel extends LinearLayout implements Tunable, Callback,
 
     private BrightnessMirrorController mBrightnessMirrorController;
 
-    private int mBrightnessSlider = 1;
+    private int mBrightnessSlider;
 
     public QSPanel(Context context) {
         this(context, null);
@@ -146,11 +146,14 @@ public class QSPanel extends LinearLayout implements Tunable, Callback,
 
         mBrightnessView = LayoutInflater.from(mContext).inflate(
             R.layout.quick_settings_brightness_dialog, this, false);
+        addView(mBrightnessView);
 
         mTileLayout = (QSTileLayout) LayoutInflater.from(mContext).inflate(
                 R.layout.qs_paged_tile_layout, this, false);
         mTileLayout.setListening(mListening);
         //updateSettings();
+
+        addView((View) mTileLayout);
 
         mQsTileRevealController = new QSTileRevealController(mContext, this,
                 (PagedTileLayout) mTileLayout);
@@ -173,12 +176,22 @@ public class QSPanel extends LinearLayout implements Tunable, Callback,
     }
 
     private void addQSPanel() {
-        if (mBrightnessSlider == 1 || mBrightnessSlider == 3) {
-            addView(mBrightnessView);
-            addView((View) mTileLayout);
-        } else {
-            addView((View) mTileLayout);
-            addView(mBrightnessView);
+        switch (mBrightnessSlider) {
+            case 1:
+            default:
+                addView(mBrightnessView);
+                addView((View) mTileLayout);
+                break;
+            case 2:
+                addView((View) mTileLayout);
+                addView(mBrightnessView);
+                break;
+            case 3:
+                addView((View) mTileLayout);
+                break;
+            case 4:
+                addView((View) mTileLayout);
+                break;
         }
 
         addDivider();
