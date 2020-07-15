@@ -525,6 +525,9 @@ public class QuickStatusBarHeader extends RelativeLayout implements
                ImageView brightnessIcon = (ImageView) mQuickQsBrightness.findViewById(R.id.brightness_icon);
                brightnessIcon.setVisibility(View.GONE);
             }
+            if (mQuickQsBrightness.getVisibility() == View.GONE) {
+                mQuickQsBrightness.setVisibility(View.VISIBLE);
+            }
             mMinBrightness.setVisibility(mBrightnessButton ? VISIBLE : GONE);
             mMaxBrightness.setVisibility(mBrightnessButton ? VISIBLE : GONE);
         } else {
