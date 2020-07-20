@@ -239,22 +239,21 @@ public class QSPanel extends LinearLayout implements Tunable, Callback,
     }
 
     private void addQSPanel() {
-        switch (mBrightnessSlider) {
-            case 1:
-            default:
-                addView(mBrightnessView);
-                addView((View) mTileLayout);
-                break;
-            case 2:
-                addView((View) mTileLayout);
-                addView(mBrightnessView);
-                break;
-            case 3:
-                addView((View) mTileLayout);
-                break;
-            case 4:
-                addView((View) mTileLayout);
-                break;
+        if (mBrightnessSlider == 1) {
+            addView(mBrightnessView);
+            addView((View) mTileLayout);
+        } else if (mBrightnessSlider == 2) {
+            addView((View) mTileLayout);
+            addView(mBrightnessView);
+        }  else if (mBrightnessSlider == 3) {
+            addView(mBrightnessView);
+            addView((View) mTileLayout);
+        }  else if (mBrightnessSlider == 4) {
+            addView((View) mTileLayout);
+            addView(mBrightnessView);
+        } else {
+            addView((View) mTileLayout);
+            addView(mBrightnessView);
         }
 
         addDivider();
