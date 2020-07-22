@@ -421,7 +421,7 @@ public class BatteryMeterView extends LinearLayout implements
                                 LayoutParams.WRAP_CONTENT,
                                 LayoutParams.MATCH_PARENT));
             }
-            //updatePercentText();
+            updatePercentText();
         }
     }
 

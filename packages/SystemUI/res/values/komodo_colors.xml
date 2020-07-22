@@ -10,6 +10,6 @@
 
     <!-- QS date color-->
     <color name="qs_date_color">#FF4C4C4C</color>
-
+    <color name="qs_background_dark_color">@android:color/white</color>
 </resources>
 

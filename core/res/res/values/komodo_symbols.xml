@@ -31,9 +31,6 @@
     <!-- Rotation sensor -->
     <java-symbol type="bool" name="config_useSystemClockforRotationSensor" />
 
-    <!-- Whether device ignores the RSSNR signal implementation -->
-    <java-symbol type="bool" name="config_ignoreRssnrSignalLevel" />
-
     <!-- Whether to cleanup fingerprints upon connection to the daemon and when user switches -->
     <java-symbol type="bool" name="config_cleanupUnusedFingerprints" />
 
@@ -159,5 +156,12 @@
     <java-symbol type="string" name="gaming_mode_notification_content" />
     <java-symbol type="string" name="gaming_mode_enabled_toast" />
     <java-symbol type="string" name="gaming_mode_disabled_toast" />
+ 
+  <!-- Fonts -->
+  <java-symbol type="string" name="config_lightFontFamily" />
+  <java-symbol type="string" name="config_regularFontFamily" />
+  <java-symbol type="string" name="config_headlineFontFamilyMedium" />
+  <java-symbol type="string" name="config_bodyFontFamily" />
+  <java-symbol type="string" name="config_bodyFontFamilyMedium" />
 
 </resources>

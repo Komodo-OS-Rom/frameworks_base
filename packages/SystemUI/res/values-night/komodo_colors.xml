@@ -17,5 +17,6 @@
 
     <!-- QS date color-->
     <color name="qs_date_color">#FFFFFFFF</color>
+    <color name="qs_background_dark_color">@*android:color/primary_dark_device_default_settings</color>
 
 </resources>

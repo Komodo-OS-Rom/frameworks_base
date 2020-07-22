@@ -259,7 +259,7 @@ public abstract class ActivityManagerInternal {
             String resolvedType, boolean fgRequired, String callingPackage, int userId,
             boolean allowBackgroundActivityStarts) throws TransactionTooLargeException;
 
-    public abstract void disconnectActivityFromServices(Object connectionHolder, Object conns);
+    public abstract void disconnectActivityFromServices(Object connectionHolder);
     public abstract void cleanUpServices(int userId, ComponentName component, Intent baseIntent);
     public abstract ActivityInfo getActivityInfoForUser(ActivityInfo aInfo, int userId);
     public abstract void ensureBootCompleted();
@@ -299,7 +299,7 @@ public abstract class ActivityManagerInternal {
 
     /** Starts a given process. */
     public abstract void startProcess(String processName, ApplicationInfo info,
-            boolean knownToBeDead, String hostingType, ComponentName hostingName);
+            boolean knownToBeDead, boolean isTop, String hostingType, ComponentName hostingName);
 
     /** Starts up the starting activity process for debugging if needed.
      * This function needs to be called synchronously from WindowManager context so the caller
