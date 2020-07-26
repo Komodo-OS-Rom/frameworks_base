@@ -4657,12 +4657,6 @@ public final class Settings {
                 BOOLEAN_VALIDATOR;
 
         /**
-         * Whether the user has already accepted MediaProjection permission for the built-in screenrecorder
-         * @hide
-         */
-        public static final String MEDIAPROJECTION_SYSUI_OK = "mediaprojection_sysui_ok";
-
-        /**
          * IMPORTANT: If you add a new public settings you also have to add it to
          * PUBLIC_SETTINGS below. If the new setting is hidden you have to add
          * it to PRIVATE_SETTINGS below. Also add a validator that can validate
@@ -5307,30 +5301,6 @@ public final class Settings {
         /** @hide */
         private static final Validator HEADS_UP_NOTIFICATION_SNOOZE_VALIDATOR =
               new SettingsValidators.InclusiveIntegerRangeValidator(0, 1200000);
-
-        /**
-         * Screenrecord: audio source
-         * @hide
-         */
-        public static final String SCREENRECORD_AUDIO_SOURCE = "screenrecord_audio_source";
-
-        /**
-         * Screenrecord: show taps
-         * @hide
-         */
-        public static final String SCREENRECORD_SHOW_TAPS = "screenrecord_show_taps";
-
-        /**
-         * Screenrecord: show stop dot
-         * @hide
-         */
-        public static final String SCREENRECORD_STOP_DOT = "screenrecord_stop_dot";
-
-        /**
-         * Screenrecord: video bitrate
-         * @hide
-         */
-        public static final String SCREENRECORD_VIDEO_BITRATE = "screenrecord_video_bitrate";
 
         /**
          * Double tap on lockscreen to sleep

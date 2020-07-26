@@ -32,7 +32,6 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.os.RemoteException;
 import android.os.ServiceManager;
-import android.provider.Settings;
 import android.text.BidiFormatter;
 import android.text.SpannableString;
 import android.text.TextPaint;
@@ -83,12 +82,8 @@ public class MediaProjectionPermissionActivity extends Activity
             return;
         }
 
-        final boolean isSysUI = mPackageName.equals("com.android.systemui");
-        final boolean isSysUIGranted = Settings.System.getInt(this.getContentResolver(),
-                Settings.System.MEDIAPROJECTION_SYSUI_OK, 0) == 1;
         try {
-            if (mService.hasProjectionPermission(mUid, mPackageName) ||
-                    (isSysUI && isSysUIGranted)) {
+            if (mService.hasProjectionPermission(mUid, mPackageName)) {
                 setResult(RESULT_OK, getMediaProjectionIntent(mUid, mPackageName));
                 finish();
                 return;
@@ -97,12 +92,6 @@ public class MediaProjectionPermissionActivity extends Activity
             Log.e(TAG, "Error checking projection permissions", e);
             finish();
             return;
-        }
-        
-        if (isSysUI) {
-            // isSysUIGranted was false, let's remember we accepted the permission
-            Settings.System.putInt(this.getContentResolver(),
-                    Settings.System.MEDIAPROJECTION_SYSUI_OK, 1);
         }
 
         TextPaint paint = new TextPaint();
