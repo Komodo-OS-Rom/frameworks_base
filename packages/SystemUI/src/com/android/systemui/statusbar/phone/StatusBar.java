@@ -1965,12 +1965,6 @@ public class StatusBar extends SystemUI implements DemoMode,
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.QS_LAYOUT_ROWS_LANDSCAPE),
                     false, this, UserHandle.USER_ALL);
-            resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.DOUBLE_TAP_SLEEP_LOCKSCREEN),
-                    false, this, UserHandle.USER_ALL);
-            resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.DOUBLE_TAP_SLEEP_GESTURE),
-                    false, this, UserHandle.USER_ALL);
         }
 
         @Override
@@ -1981,16 +1975,13 @@ public class StatusBar extends SystemUI implements DemoMode,
             } else if (uri.equals(Settings.System.getUriFor(Settings.System.QS_LAYOUT_ROWS)) ||
                     uri.equals(Settings.System.getUriFor(Settings.System.QS_LAYOUT_ROWS_LANDSCAPE))) {
                 setQsRowsColumns();
-            } else if (uri.equals(Settings.System.getUriFor(Settings.System.DOUBLE_TAP_SLEEP_LOCKSCREEN)) ||
-                       uri.equals(Settings.System.getUriFor(Settings.System.DOUBLE_TAP_SLEEP_GESTURE))) {
-                setStatusDoubleTapToSleep();
             }
         }
 
     public void update() {
         updateKeyguardStatusSettings();
         setQsRowsColumns();
-        setStatusDoubleTapToSleep();
+
        }
     }
 
@@ -2002,12 +1993,6 @@ public class StatusBar extends SystemUI implements DemoMode,
 
     private void updateKeyguardStatusSettings() {
         mNotificationPanel.updateKeyguardStatusSettings();
-    }
-
-    private void setStatusDoubleTapToSleep() {
-        if (mStatusBarWindow != null) {
-            mStatusBarWindow.updateSettings();
-        }
     }
 
     @Override

@@ -415,9 +415,6 @@ public class NotificationPanelView extends PanelView implements
     private int mDisplayId;
 
     private int mStatusBarHeaderHeight;
-    private GestureDetector mDoubleTapGesture;
-    private GestureDetector mLockscreenDoubleTapToSleep;
-    private boolean mIsLockscreenDoubleTapEnabled;
 
     /**
      * Cache the resource id of the theme to avoid unnecessary work in onThemeChanged.
@@ -489,21 +486,6 @@ public class NotificationPanelView extends PanelView implements
         });
         mBottomAreaShadeAlphaAnimator.setDuration(160);
         mBottomAreaShadeAlphaAnimator.setInterpolator(Interpolators.ALPHA_OUT);
-        mDoubleTapGesture = new GestureDetector(mContext, new GestureDetector.SimpleOnGestureListener() {
-            @Override
-            public boolean onDoubleTap(MotionEvent e) {
-                KomodoUtils.switchScreenOff(context);
-                return true;
-            }
-        });
-        mLockscreenDoubleTapToSleep = new GestureDetector(context,
-                new GestureDetector.SimpleOnGestureListener() {
-            @Override
-            public boolean onDoubleTap(MotionEvent e) {
-                KomodoUtils.switchScreenOff(context);
-                return true;
-            }
-        });
     }
 
     /**
@@ -608,9 +590,9 @@ public class NotificationPanelView extends PanelView implements
         mShelfHeight = getResources().getDimensionPixelSize(R.dimen.notification_shelf_height);
         mDarkIconSize = getResources().getDimensionPixelSize(
                 R.dimen.status_bar_icon_drawing_size_dark);
-        mStatusBarHeaderHeight = getResources().getDimensionPixelSize(
+        int statusbarHeight = getResources().getDimensionPixelSize(
                 com.android.internal.R.dimen.status_bar_height);
-        mHeadsUpInset = mStatusBarHeaderHeight + getResources().getDimensionPixelSize(
+        mHeadsUpInset = statusbarHeight + getResources().getDimensionPixelSize(
                 R.dimen.heads_up_status_bar_padding);
     }
 
@@ -1268,11 +1250,6 @@ public class NotificationPanelView extends PanelView implements
         if (mStatusBar.isBouncerShowingScrimmed()) {
             return false;
         }
-        if (!mQsExpanded
-                && mDoubleTapToSleepEnabled
-                && event.getY() < mStatusBarHeaderHeight) {
-            mDoubleTapGesture.onTouchEvent(event);
-        }
         // Make sure the next touch won't the blocked after the current ends.
         if (event.getAction() == MotionEvent.ACTION_UP
                 || event.getAction() == MotionEvent.ACTION_CANCEL) {
@@ -1289,10 +1266,6 @@ public class NotificationPanelView extends PanelView implements
                 && mPulseExpansionHandler.onTouchEvent(event)) {
             // We're expanding all the other ones shouldn't get this anymore
             return true;
-        }
-        if (mIsLockscreenDoubleTapEnabled && !mPulsing && !mDozing
-                && mBarState == StatusBarState.KEYGUARD) {
-            mLockscreenDoubleTapToSleep.onTouchEvent(event);
         }
         if (mListenForHeadsUp && !mHeadsUpTouchHelper.isTrackingHeadsUp()
                 && mHeadsUpTouchHelper.onInterceptTouchEvent(event)) {
@@ -3548,9 +3521,5 @@ public class NotificationPanelView extends PanelView implements
 
     public void setOnReinflationListener(Runnable onReinflationListener) {
         mOnReinflationListener = onReinflationListener;
-    }
-
-    public void updateDoubleTapToSleep(boolean doubleTapToSleepEnabled) {
-        mDoubleTapToSleepEnabled = doubleTapToSleepEnabled;
     }
 }
