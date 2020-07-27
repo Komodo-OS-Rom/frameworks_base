@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "49b3c701_940fa0b5",
+        "filename": "packages/SystemUI/res/values/komodo_config.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1000007
+      },
+      "writtenOn": "2020-07-27T11:48:56Z",
+      "side": 1,
+      "message": "Booleans should default to false, so builders don\u0027t need to add this to the overlay dt config even though their device is not supported H265 enc.",
+      "revId": "510fbb9f2f22985a1638477de0a78c76374b5183",
+      "serverId": "c13df4ca-d00a-4b92-8989-c0af4d61fd4f",
+      "unresolved": true
+    }
+  ]
+}
