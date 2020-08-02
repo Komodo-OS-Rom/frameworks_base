@@ -179,7 +179,7 @@ public class QSFooterImpl extends FrameLayout implements QSFooter,
                         Settings.System.FOOTER_TEXT_STRING, UserHandle.USER_CURRENT);
 
         if (showFooterText) {
-            String btFooterText = "#" + buildType;
+            String btFooterText = "#HUTRI75 - " + buildType;
             v.setText((footerText != null && !footerText.isEmpty()) ? footerText : btFooterText);
             v.setVisibility(View.VISIBLE);
         } else {
