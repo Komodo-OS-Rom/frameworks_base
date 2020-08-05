@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b29ae66f_6f35d898",
+        "filename": "packages/SystemUI/src/com/android/systemui/qs/QSPanel.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2020-08-05T10:15:53Z",
+      "side": 0,
+      "message": "whitespace",
+      "revId": "e752f77b8e3078974d831cb6b5be436f6152503e",
+      "serverId": "c13df4ca-d00a-4b92-8989-c0af4d61fd4f",
+      "unresolved": true
+    }
+  ]
+}
