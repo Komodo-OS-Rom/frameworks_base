@@ -638,7 +638,7 @@ public final class ColorUtils {
     }
 
     private static int srgbTransferToInt(float c) {
-        return MathUtils.constrain(Math.round(srgbTransfer(c) * 255.0f), 0, 255);
+        return Math.round(srgbTransfer(c) * 255.0f);
     }
 
     private static float rgbToOklabLp(float r, float g, float b) {
