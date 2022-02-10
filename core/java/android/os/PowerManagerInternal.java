@@ -106,6 +106,16 @@ public abstract class PowerManagerInternal {
      * @param brightness The overridden brightness, or Float.NaN to disable the override.
      */
     public abstract void setScreenBrightnessOverrideFromWindowManager(float brightness);
+    
+    /**
+     * Used by the window manager to override the button brightness based on the
+     * current foreground activity.
+     *
+     * This method must only be called by the window manager.
+     *
+     * @param brightness The overridden brightness, or Float.NaN to disable the override.
+     */
+    public abstract void setButtonBrightnessOverrideFromWindowManager(float brightness);
 
     /**
      * Used by the window manager to override the user activity timeout based on the
