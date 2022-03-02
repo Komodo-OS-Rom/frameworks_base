@@ -86,5 +86,6 @@ public class SystemSettings {
         Settings.System.NOTIFICATION_LIGHT_PULSE,
         Settings.System.FORCE_SHOW_NAVBAR,
         Settings.System.ENABLE_RIPPLE_EFFECT,
+        Settings.System.SHOW_FOURG_ICON,
     };
 }
