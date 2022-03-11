@@ -21,7 +21,8 @@ import static com.android.keyguard.KeyguardAbsKeyInputView.MINIMUM_PASSWORD_LENG
 import android.os.UserHandle;
 import android.provider.Settings;
 import android.view.View;
-import android.widget.LinearLayout;
+
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.android.internal.util.LatencyTracker;
 import com.android.internal.widget.LockPatternUtils;
@@ -86,18 +87,13 @@ public class KeyguardPinViewController
         if (scramblePin) {
             Collections.shuffle(sNumbers);
             // get all children who are NumPadKey's
-            LinearLayout container = (LinearLayout) mView.findViewById(R.id.pin_container);
+            ConstraintLayout container = (ConstraintLayout) mView.findViewById(R.id.pin_container);
 
             List<NumPadKey> views = new ArrayList<NumPadKey>();
             for (int i = 0; i < container.getChildCount(); i++) {
-                if (container.getChildAt(i) instanceof LinearLayout) {
-                    LinearLayout nestedLayout = ((LinearLayout) container.getChildAt(i));
-                    for (int j = 0; j < nestedLayout.getChildCount(); j++){
-                        View view = nestedLayout.getChildAt(j);
-                        if (view.getClass() == NumPadKey.class) {
-                            views.add((NumPadKey) view);
-                        }
-                    }
+                View view = container.getChildAt(i);
+                if (view.getClass() == NumPadKey.class) {
+                    views.add((NumPadKey) view);
                 }
             }
 
