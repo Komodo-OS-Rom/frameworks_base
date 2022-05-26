@@ -190,9 +190,9 @@ public class QuickStatusBarHeader extends FrameLayout {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        if (mDatePrivacyView.getMeasuredHeight() != mTopViewMeasureHeight) {
-            mTopViewMeasureHeight = mDatePrivacyView.getMeasuredHeight();
-            post(this::updateAnimators);
+        if (mStatusIconsView.getMeasuredHeight() != mTopViewMeasureHeight) {
+            mTopViewMeasureHeight = mStatusIconsView.getMeasuredHeight();
+            updateAnimators();
         }
     }
 
