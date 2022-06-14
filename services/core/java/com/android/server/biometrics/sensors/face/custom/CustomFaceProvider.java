@@ -320,7 +320,7 @@ public class CustomFaceProvider implements ServiceProvider {
     }
 
     @Override
-    public void cancelEnrollment(int sensorId, IBinder token, long requestId) {
+    public void cancelEnrollment(int sensorId, @NonNull IBinder token, long requestId) {
         mHandler.post(() -> mScheduler.cancelEnrollment(token, requestId));
     }
 
