@@ -75,7 +75,7 @@ public class PixelPropsUtils {
         "DEVICE", "cheetah",
         "PRODUCT", "cheetah",
         "MODEL", "Pixel 7 Pro",
-        "FINGERPRINT", "google/cheetah/cheetah:13/TQ1A.230105.001.A2/9325679:user/release-keys"
+        "FINGERPRINT", "google/cheetah/cheetah:13/TQ3A.230805.001/10316531:user/release-keys"
     );
 
     private static final Map<String, Object> sPixelXLProps = Map.of(
